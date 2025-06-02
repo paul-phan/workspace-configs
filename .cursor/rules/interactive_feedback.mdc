@@ -5,11 +5,6 @@ alwaysApply: true
 ---
 # Interactive Feedback Rule
 
-- **Always Use Interactive Feedback for Questions:**
-  - Before asking the user any clarifying questions, call `mcp_interactive-feedback-mcp_interactive_feedback`
-  - Provide the current project directory and a summary of what you need clarification on
-  - Wait for the interactive feedback response before proceeding
-
 - **Always Use Interactive Feedback Before Completion:**
   - Before completing any user request, call `mcp_interactive-feedback-mcp_interactive_feedback`
   - Provide the current project directory and a summary of what was accomplished
@@ -18,18 +13,9 @@ alwaysApply: true
 
 - **Required Parameters:**
   - `project_directory`: Full absolute path to the project directory
-  - `summary`: Short, one-line summary of the question or completed work
+  - `summary`: Short, one-line summary of the completed work
 
 - **Examples:**
-
-  ```typescript
-  // ✅ DO: Call interactive feedback before asking questions
-  // Before asking: "Which Shopify API version should we target?"
-  await mcp_interactive_feedback({
-    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
-    summary: "Need clarification on Shopify API version for new component"
-  });
-  ```
 
   ```typescript
   // ✅ DO: Call interactive feedback before completing requests
@@ -41,17 +27,12 @@ alwaysApply: true
   ```
 
   ```typescript
-  // ✅ DO: Call interactive feedback for Weaverse-specific tasks
-  // Before modifying inspector inputs or RPC communication
+  // ✅ DO: Call interactive feedback for Weaverse-specific tasks completion
+  // After modifying inspector inputs or RPC communication
   await mcp_interactive_feedback({
     project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
-    summary: "Need guidance on inspector input mapping for custom component"
+    summary: "Updated inspector input mapping for custom component"
   });
-  ```
-
-  ```typescript
-  // ❌ DON'T: Ask questions directly without interactive feedback
-  // "Should we use signals or React state?" - Missing interactive feedback call
   ```
 
   ```typescript
@@ -60,13 +41,13 @@ alwaysApply: true
   ```
 
 - **Workflow Integration:**
-  - This rule applies to all interactions, regardless of the specific task or technology
+  - This rule applies to task completion, regardless of the specific task or technology
   - Interactive feedback helps ensure user satisfaction and catches any missed requirements
-  - The feedback mechanism allows for real-time course correction and validation
+  - The feedback mechanism allows for final validation before task completion
   - Particularly important for Weaverse builder tasks involving visual editor components, RPC communication, or Shopify integrations
 
 - **Exception Handling:**
-  - If the interactive feedback tool is unavailable, proceed with normal question/completion flow
+  - If the interactive feedback tool is unavailable, proceed with normal completion flow
   - Log when interactive feedback cannot be used for debugging purposes
   - Never loop the interactive feedback call if the response is empty on completion
 
