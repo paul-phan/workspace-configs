@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../weaverse"
+		},
+		{
+			"path": "../generator"
 		}
 	],
 	"settings": {}
