@@ -6,10 +6,10 @@ alwaysApply: false
 # Interactive Feedback Rule
 
 - **Always Use Interactive Feedback for Questions:**
-  - Whenever you want to ask a question, always call the interactive feedback MCP tool
+  - Whenever you want to ask a question, always call the `interactive_feedback` MCP tool
 
 - **Always Use Interactive Feedback Before Completion:**
-  - Whenever you're about to complete a user request, call the interactive feedback MCP tool instead of simply ending the process
+  - Whenever you're about to complete a user request, call the `interactive_feedback` MCP tool instead of simply ending the process
   - Keep calling MCP until the user's feedback is empty, then end the request
 
 - **Required Parameters:**
