@@ -1,11 +1,14 @@
 ---
 description: Interactive Feedback Rule
+globs: 
 alwaysApply: true
 ---
 # Interactive Feedback Rule - Builder & Weaverse Projects
 
-- **Always Use Interactive Feedback for Questions:**
-  - Before asking the user any clarifying questions, call `mcp_interactive-feedback-mcp_interactive_feedback`
+- **Use Interactive Feedback When You Need Clarification:**
+  - When you need more information or clarification from the user, call `mcp_interactive-feedback-mcp_interactive_feedback`
+  - When asking specific questions that affect implementation decisions
+  - When the user's request is ambiguous or could be interpreted multiple ways
   - Provide the appropriate project directory and a summary of what you need clarification on
   - Wait for the interactive feedback response before proceeding
 
