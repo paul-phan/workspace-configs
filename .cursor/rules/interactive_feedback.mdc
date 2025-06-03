@@ -3,15 +3,109 @@ description:
 globs: 
 alwaysApply: false
 ---
-# Interactive Feedback Rule
+---
+description:
+globs:
+alwaysApply: true
+---
+# Interactive Feedback Rule - Builder & Weaverse Projects
 
 - **Always Use Interactive Feedback for Questions:**
-  - Whenever you want to ask a question, always call the `interactive_feedback` MCP tool
+  - Before asking the user any clarifying questions, call `mcp_interactive-feedback-mcp_interactive_feedback`
+  - Provide the appropriate project directory and a summary of what you need clarification on
+  - Wait for the interactive feedback response before proceeding
 
 - **Always Use Interactive Feedback Before Completion:**
-  - Whenever you're about to complete a user request, call the `interactive_feedback` MCP tool instead of simply ending the process
-  - Keep calling MCP until the user's feedback is empty, then end the request
+  - Before completing any user request, call `mcp_interactive-feedback-mcp_interactive_feedback`
+  - Provide the appropriate project directory and a summary of what was accomplished
+  - If the feedback response is empty, you can complete the request without calling the MCP again
+  - If feedback is provided, address it before completing the request
+
+- **Project Directory Detection:**
+  
+  **For @builder project:**
+  - Use: `/Users/paul/Workspace/weaverse-project/workspace/builder`
+  - This is a React Router application with visual editor capabilities
+  - Contains: app/, studio/, prisma/, scripts/, public/
+
+  **For @weaverse project:**
+  - Use: `/Users/paul/Workspace/weaverse-project/workspace/weaverse`
+  - This is a monorepo with multiple packages
+  - Contains: packages/, templates/, docs/, scripts/
+
+  **For workspace-level operations:**
+  - Use: `/Users/paul/Workspace/weaverse-project/workspace`
+  - When working across both projects or general workspace tasks
 
 - **Required Parameters:**
-  - `project_directory`: Full absolute path to the project directory
-  - `summary`: Short, one-line summary of the completed work
+  - `project_directory`: Full absolute path to the appropriate project directory
+  - `summary`: Short, one-line summary of the question or completed work
+
+- **Project-Specific Examples:**
+
+  ```typescript
+  // ✅ Builder project - UI component development
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
+    summary: "Need clarification on which visual editor component to implement"
+  });
+  ```
+
+  ```typescript
+  // ✅ Weaverse project - Package development
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/weaverse",
+    summary: "Completed new React hook implementation in @weaverse/react package"
+  });
+  ```
+
+  ```typescript
+  // ✅ Workspace-level - Cross-project operations
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace",
+    summary: "Setting up shared tooling configuration across both projects"
+  });
+  ```
+
+  ```typescript
+  // ✅ Builder project - Database schema changes
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
+    summary: "Updated Prisma schema for new content management features"
+  });
+  ```
+
+  ```typescript
+  // ✅ Weaverse project - Documentation updates
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/weaverse",
+    summary: "Added API documentation for new Hydrogen integration features"
+  });
+  ```
+
+- **Context-Aware Directory Selection:**
+  - When working on visual editor features → use builder directory
+  - When working on React components/hooks → use weaverse directory
+  - When working on Shopify integrations → determine based on context (builder for UI, weaverse for packages)
+  - When working on build tools/configs → use workspace directory
+  - When working on documentation → use appropriate project directory based on content
+
+- **Workflow Integration:**
+  - This rule applies to all interactions in both @builder and @weaverse projects
+  - Interactive feedback helps ensure alignment with project-specific conventions
+  - The feedback mechanism allows for real-time course correction and validation
+  - Respect the monorepo structure of weaverse and the application structure of builder
+
+- **Exception Handling:**
+  - If the interactive feedback tool is unavailable, proceed with normal question/completion flow
+  - Log when interactive feedback cannot be used for debugging purposes
+  - Never loop the interactive feedback call if the response is empty on completion
+  - If uncertain about project directory, default to workspace level and clarify in summary
+
+- **Best Practices:**
+  - Keep summaries concise but descriptive
+  - Always use the full absolute path for project_directory
+  - Use interactive feedback as a quality gate, not a blocker
+  - Respect empty feedback responses as approval to proceed
+  - Consider the specific project architecture when selecting directory
+  - Mention relevant project context (React Router, monorepo, visual editor) in summaries
