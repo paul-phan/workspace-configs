@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: false
+alwaysApply: true
 ---
 # Biome Linting Rule - Configuration Detection and Auto-Fix
 
