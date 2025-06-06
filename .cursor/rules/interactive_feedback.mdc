@@ -15,18 +15,33 @@ alwaysApply: true
 - **Always Use Interactive Feedback Before Completion:**
   - Before completing any user request, call `mcp_interactive-feedback-mcp_interactive_feedback`
   - Provide the appropriate project directory and a summary of what was accomplished
+  - **Include a prompt asking if the user wants to save any insights from this chat to Cursor memory**
   - If the feedback response is empty, you can complete the request without calling the MCP again
   - If feedback is provided, address it before completing the request
+  - If the user wants to save something to memory, use the `add_to_memory` tool before final completion
+
+- **Memory-Saving Integration:**
+  - When asking for final feedback, include: "Would you like me to save any insights, patterns, or solutions from this chat to Cursor memory for future reference?"
+  - If the user indicates they want to save something:
+    - Identify the most valuable insights from the conversation
+    - Use the `add_to_memory` tool with a clear title and concise knowledge summary
+    - Focus on reusable patterns, solutions, or project-specific knowledge
+  - Examples of valuable knowledge to save:
+    - New patterns or approaches discovered during implementation
+    - Project-specific configurations or conventions
+    - Solutions to complex problems
+    - Integration patterns between builder and weaverse projects
+    - Custom implementations that could be reused
 
 - **Project Directory Detection:**
   
   **For @builder project:**
-  - Use: `/Users/paul/Workspace/weaverse-project/workspace/builder`
+  - Use: `/Users/paul/Workspace/weaverse-project/builder`
   - This is a React Router application with visual editor capabilities
   - Contains: app/, studio/, prisma/, scripts/, public/
 
   **For @weaverse project:**
-  - Use: `/Users/paul/Workspace/weaverse-project/workspace/weaverse`
+  - Use: `/Users/paul/Workspace/weaverse-project/weaverse`
   - This is a monorepo with multiple packages
   - Contains: packages/, templates/, docs/, scripts/
 
@@ -43,7 +58,7 @@ alwaysApply: true
   ```typescript
   // ✅ Builder project - UI component development
   await mcp_interactive_feedback({
-    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
+    project_directory: "/Users/paul/Workspace/weaverse-project/builder",
     summary: "Need clarification on which visual editor component to implement"
   });
   ```
@@ -51,7 +66,7 @@ alwaysApply: true
   ```typescript
   // ✅ Weaverse project - Package development
   await mcp_interactive_feedback({
-    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/weaverse",
+    project_directory: "/Users/paul/Workspace/weaverse-project/weaverse",
     summary: "Completed new React hook implementation in @weaverse/react package"
   });
   ```
@@ -67,7 +82,7 @@ alwaysApply: true
   ```typescript
   // ✅ Builder project - Database schema changes
   await mcp_interactive_feedback({
-    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/builder",
+    project_directory: "/Users/paul/Workspace/weaverse-project/builder",
     summary: "Updated Prisma schema for new content management features"
   });
   ```
@@ -75,8 +90,52 @@ alwaysApply: true
   ```typescript
   // ✅ Weaverse project - Documentation updates
   await mcp_interactive_feedback({
-    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/weaverse",
+    project_directory: "/Users/paul/Workspace/weaverse-project/weaverse",
     summary: "Added API documentation for new Hydrogen integration features"
+  });
+  ```
+
+- **Memory-Saving Examples:**
+
+  ```typescript
+  // ✅ Example: Completion with memory-saving prompt
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/builder",
+    summary: "Implemented custom product variant selector with swatches. Would you like me to save any insights, patterns, or solutions from this chat to Cursor memory for future reference?"
+  });
+  
+  // If user says yes, save the pattern:
+  await add_to_memory({
+    title: "Product Variant Selector with Swatches Pattern",
+    knowledge_to_store: "When implementing product variant selectors in the builder project, use the SwatchesValues component with proper TypeScript types from ./+types/[routeName]. The pattern involves: 1) Using Route.LoaderArgs for type-safe params, 2) Implementing color/size swatches with Tailwind classes, 3) Managing selection state with React hooks. Key files: product-options-swatches/, swatches-values/editor/"
+  });
+  ```
+
+  ```typescript
+  // ✅ Example: Saving integration pattern
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace",
+    summary: "Created integration between builder visual editor and weaverse React components. Would you like me to save any insights about this integration pattern to Cursor memory?"
+  });
+  
+  // If user agrees:
+  await add_to_memory({
+    title: "Builder-Weaverse Component Integration Pattern",
+    knowledge_to_store: "To integrate weaverse React components into builder visual editor: 1) Export components from @weaverse/react package, 2) Import in builder app/modules/, 3) Register with studio inspector system, 4) Use RPC communication between studio and preview frames. Critical: maintain type safety across package boundaries using shared types."
+  });
+  ```
+
+  ```typescript
+  // ✅ Example: Saving troubleshooting solution
+  await mcp_interactive_feedback({
+    project_directory: "/Users/paul/Workspace/weaverse-project/workspace/weaverse",
+    summary: "Fixed React Router v7 type generation issue. Would you like me to save this troubleshooting solution to memory?"
+  });
+  
+  // If user wants to save:
+  await add_to_memory({
+    title: "React Router v7 Type Generation Fix",
+    knowledge_to_store: "When seeing 'Cannot find module ./+types/[routeName]' errors in React Router v7: Always run 'npm run typecheck' to generate types. NEVER change imports from './+types/routeName' to '../+types/routeName'. Types are auto-generated by @react-router/dev and must be imported as relative to the route file."
   });
   ```
 
@@ -106,3 +165,10 @@ alwaysApply: true
   - Respect empty feedback responses as approval to proceed
   - Consider the specific project architecture when selecting directory
   - Mention relevant project context (React Router, monorepo, visual editor) in summaries
+  - **Memory-Saving Best Practices:**
+    - Always include the memory prompt in your completion summary
+    - Be specific about what insights could be saved (patterns, solutions, configurations)
+    - Keep saved knowledge concise but actionable (one paragraph max)
+    - Focus on reusable patterns rather than one-time fixes
+    - Include file paths or specific code patterns when relevant
+    - Update existing memories rather than creating duplicates when appropriate
