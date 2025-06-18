@@ -15,13 +15,13 @@ alwaysApply: true
 - **Always Use Interactive Feedback Before Completion:**
   - Before completing any user request, call `mcp_mcp-feedback-enhanced_interactive_feedback`
   - Provide the appropriate project directory and a summary of what was accomplished
-  - **Include a prompt asking if the user wants to save any insights from this chat to Cursor memory**
+  - **Include a prompt asking if the user wants to save any insights from this chat to Roo Code memory**
   - If the feedback response is empty, you can complete the request without calling the MCP again
   - If feedback is provided, address it before completing the request
   - If the user wants to save something to memory, use the `add_to_memory` tool before final completion
 
 - **Memory-Saving Integration:**
-  - When asking for final feedback, include: "Would you like me to save any insights, patterns, or solutions from this chat to Cursor memory for future reference?"
+  - When asking for final feedback, include: "Would you like me to save any insights, patterns, or solutions from this chat to Roo Code memory for future reference?"
   - If the user indicates they want to save something:
     - Identify the most valuable insights from the conversation
     - Use the `add_to_memory` tool with a clear title and concise knowledge summary
@@ -101,7 +101,7 @@ alwaysApply: true
   // ✅ Example: Completion with memory-saving prompt
   await mcp_mcp-feedback-enhanced_interactive_feedback({
     project_directory: "/Users/paul/Workspace/weaverse-project/builder",
-    summary: "Implemented custom product variant selector with swatches. Would you like me to save any insights, patterns, or solutions from this chat to Cursor memory for future reference?"
+    summary: "Implemented custom product variant selector with swatches. Would you like me to save any insights, patterns, or solutions from this chat to Roo Code memory for future reference?"
   });
   
   // If user says yes, save the pattern:
@@ -115,7 +115,7 @@ alwaysApply: true
   // ✅ Example: Saving integration pattern
   await mcp_mcp-feedback-enhanced_interactive_feedback({
     project_directory: "/Users/paul/Workspace/weaverse-project/workspace",
-    summary: "Created integration between builder visual editor and weaverse React components. Would you like me to save any insights about this integration pattern to Cursor memory?"
+    summary: "Created integration between builder visual editor and weaverse React components. Would you like me to save any insights about this integration pattern to Roo Code memory?"
   });
   
   // If user agrees:
