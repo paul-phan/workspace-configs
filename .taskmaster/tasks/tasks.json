@@ -2,164 +2,229 @@
   "master": {
     "tasks": [
       {
-        "id": 22,
-        "title": "Enhance Image Layout Interpretation Engine",
-        "description": "Improve the accuracy of layout interpretation from uploaded images by 25% through advanced computer vision and ML techniques",
-        "details": "Implement advanced image preprocessing using OpenCV for better edge detection and layout analysis. Integrate with latest vision models (GPT-4V, Claude Vision) for multi-step layout interpretation. Add support for detecting complex multi-column layouts, grid systems, and responsive breakpoints. Implement semantic analysis to identify content blocks, navigation elements, and call-to-action areas. Use YOLO or similar object detection for UI component identification.",
-        "testStrategy": "Create test suite with 100+ diverse layout images covering simple to complex designs. Measure accuracy improvement through A/B testing against current system. Implement automated visual regression testing for layout detection consistency.",
-        "priority": "high",
-        "dependencies": [],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 23,
-        "title": "Implement Semantic HTML Generation with Accessibility",
-        "description": "Generate semantic HTML structures with proper accessibility attributes (ARIA labels, roles, semantic tags) for AI-generated sections",
-        "details": "Extend the section generation pipeline to include semantic HTML5 elements (header, nav, main, section, article, aside, footer). Implement ARIA attribute generation based on component context. Add WCAG 2.1 AA compliance checks including proper heading hierarchy, alt text generation, keyboard navigation support, and color contrast validation. Integrate with axe-core for automated accessibility testing during generation.",
-        "testStrategy": "Automated accessibility testing using axe-core and Pa11y. Manual testing with screen readers (NVDA, JAWS). Lighthouse accessibility score validation for all generated sections. User testing with accessibility experts.",
-        "priority": "high",
-        "dependencies": [
-          22
-        ],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 24,
-        "title": "Build AI Component Library with Intelligent Suggestions",
-        "description": "Create an AI-powered component library that provides intelligent component suggestions based on use case and context",
-        "details": "Develop a component recommendation engine using collaborative filtering and content-based algorithms. Create embeddings for components based on their functionality, design patterns, and usage context. Implement real-time suggestion API that analyzes current page context, user behavior, and conversion optimization patterns. Build component compatibility matrix to prevent conflicts. Use vector similarity search (Pinecone/Weaviate) for fast component matching.",
-        "testStrategy": "A/B testing for suggestion accuracy and user adoption rates. Performance testing for sub-200ms suggestion response times. User feedback collection and iterative improvement. Component compatibility validation through automated testing.",
-        "priority": "high",
-        "dependencies": [
-          23
-        ],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 25,
-        "title": "Develop Context-Aware Prompt Engineering System",
-        "description": "Implement dynamic prompt optimization system that adapts based on user input, context, and Weaverse documentation",
-        "details": "Build a prompt template engine with dynamic variable injection based on context (user type, store category, design preferences). Implement retrieval-augmented generation (RAG) using Weaverse documentation as knowledge base with vector embeddings. Create prompt versioning system for A/B testing different approaches. Implement multi-step reasoning chains for complex layout generation. Add fallback prompt strategies for edge cases and error recovery.",
-        "testStrategy": "Prompt effectiveness measurement through output quality scoring. A/B testing different prompt versions with user satisfaction metrics. Automated testing for prompt consistency and edge case handling. Performance monitoring for prompt processing time.",
+        "id": 1,
+        "title": "Setup Project Repository and Dependencies",
+        "description": "Prepare the project environment by ensuring all required dependencies are installed and configured, including browser-image-compression and Shopify file upload system.",
+        "details": "Install browser-image-compression (latest stable, e.g., 1.0.12), ensure Node.js (LTS), and TypeScript are up to date. Configure project to use existing media.ts infrastructure and Shopify file upload system. Set up environment variables for Shopify API keys and endpoints. Use npm or yarn for dependency management.",
+        "testStrategy": "Verify all dependencies are installed and environment variables are set. Test basic project build and run.",
         "priority": "medium",
-        "dependencies": [
-          24
-        ],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 26,
-        "title": "Optimize Caching Strategy and Performance",
-        "description": "Enhance existing Cloudflare KV caching with intelligent cache invalidation and multi-tier caching for sub-2s response times",
-        "details": "Implement Redis-based L1 cache for frequently accessed data with TTL optimization. Enhance Cloudflare KV L2 cache with intelligent cache warming and predictive prefetching. Add cache versioning and smart invalidation based on content changes. Implement cache analytics and hit rate monitoring. Use cache-aside pattern with automatic fallback to AI generation. Add compression for cached responses using Brotli/Gzip.",
-        "testStrategy": "Load testing with 100+ concurrent users to validate sub-2s response times. Cache hit rate monitoring with target >85%. Performance regression testing for cache effectiveness. Memory usage optimization testing for Redis instances.",
-        "priority": "high",
         "dependencies": [],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 27,
-        "title": "Implement Advanced Rate Limiting with User Tiers",
-        "description": "Develop sophisticated rate limiting system supporting different user tiers with intelligent token management and cost optimization",
-        "details": "Implement sliding window rate limiting using Redis with tier-based quotas (free, pro, enterprise). Add intelligent token usage prediction and cost optimization algorithms. Implement queue management for burst requests with priority handling. Add real-time usage monitoring and alerting for approaching limits. Implement graceful degradation with cached responses when limits are reached. Use token bucket algorithm for smooth rate limiting.",
-        "testStrategy": "Load testing with different user tiers to validate rate limiting accuracy. Cost monitoring to ensure optimization targets are met. Stress testing for queue management under high load. User experience testing for graceful degradation scenarios.",
-        "priority": "high",
-        "dependencies": [
-          26
-        ],
-        "status": "pending",
-        "subtasks": []
-      },
-      {
-        "id": 37,
-        "title": "Implement prepareDataForGeneration functionality for Weaverse AI agent WebSocket server",
-        "description": "Build data preparation service that collects section file examples, dependencies, and project context to provide enriched data for AI generation requests through WebSocket connections.",
-        "details": "Implement a comprehensive data preparation service that aggregates contextual information for AI generation. Create file system scanning functionality to collect section examples from the project directory structure, including component files, styles, and configuration. Build dependency analysis to identify required imports, external libraries, and component relationships. Implement project context extraction including theme settings, store configuration, brand guidelines, and existing design patterns. Create data enrichment pipeline that processes and structures this information into AI-consumable format with proper categorization and metadata. Implement caching layer using Redis to store frequently accessed context data and improve response times. Add WebSocket integration to stream prepared data to connected AI agents with real-time updates when project files change. Implement file watching service to detect changes and trigger context updates. Add data validation and sanitization to ensure clean input for AI models. Create context scoring system to prioritize most relevant examples and dependencies based on current generation request.",
-        "testStrategy": "Unit testing for file scanning accuracy and dependency resolution correctness. Integration testing for WebSocket data streaming and real-time updates. Performance testing for data preparation speed with large project structures. Cache effectiveness validation through response time measurements. Context relevance testing through AI generation quality comparison with and without enriched data. File watching reliability testing with concurrent file modifications. Data validation testing with malformed or corrupted project files.",
         "status": "done",
-        "dependencies": [],
-        "priority": "high",
-        "subtasks": []
-      },
-      {
-        "id": 38,
-        "title": "Refactor API Routes to Organized Folder Structure",
-        "description": "Reorganize API routes from a flat file structure to a logical folder structure in routes/api/, implementing React Router 7 explicit route configuration while maintaining backward compatibility.",
-        "details": "1. Create new folder structure in routes/api/:\n   - webhooks/ (github.ts, shopify.ts)\n   - public/ ($param.ts)\n   - shopify/ ($resource/$input.ts, $resource.ts, billing/$action.ts)\n   - templates/ ($templateId.ts)\n   - main/ ($param.$action.ts)\n\n2. Move existing route files to their new locations:\n   - Move api.github.webhook.ts to routes/api/webhooks/github.ts\n   - Move api.shopify.webhook.$.ts to routes/api/webhooks/shopify.ts\n   - Move api.public.$param.ts to routes/api/public/$param.ts\n   - Move api.shopify.$resource.$input.ts, api.shopify.$resource.ts, api.shopify.billing.$action.ts to their respective locations in routes/api/shopify/\n   - Move api.template.$templateId.ts to routes/api/templates/$templateId.ts\n\n3. Refactor the large api.$param.($action).ts file:\n   - Analyze the file and identify logical groupings of routes\n   - Create separate files in routes/api/main/ for each group, e.g., users.$action.ts, products.$action.ts\n   - Ensure each new file exports its routes\n\n4. Update routes.ts with explicit route() configurations:\n   - Import all new route files\n   - Use React Router 7's route() function to explicitly define each route\n   - Ensure that the URL patterns remain the same for backward compatibility\n   - Example:\n     ```typescript\n     import { route } from '@remix-run/v1-route';\n     import * as publicRoutes from './api/public/$param';\n     import * as shopifyRoutes from './api/shopify/$resource';\n     // ... other imports\n\n     export const routes = [\n       route('/api/public/:param', publicRoutes),\n       route('/api/shopify/:resource', shopifyRoutes),\n       // ... other routes\n     ];\n     ```\n\n5. Update import paths throughout the project:\n   - Search for all files that import from the old route locations\n   - Update import statements to reflect the new file structure\n\n6. Implement error handling and logging:\n   - Add try/catch blocks in route handlers\n   - Implement consistent error responses\n   - Set up logging for route access and errors\n\n7. Optimize performance:\n   - Implement lazy loading for route handlers\n   - Consider adding caching mechanisms for frequently accessed routes\n\n8. Update documentation:\n   - Create a new API routes documentation reflecting the new structure\n   - Update any existing documentation that references the old file structure",
-        "testStrategy": "1. Automated Testing:\n   - Write unit tests for each refactored route handler\n   - Create integration tests that cover all API endpoints\n   - Implement end-to-end tests simulating real-world API usage scenarios\n\n2. Backward Compatibility Testing:\n   - Verify that all existing URL patterns still work as expected\n   - Test with a variety of input parameters to ensure no regressions\n\n3. Performance Testing:\n   - Conduct load tests to ensure the refactored structure handles high traffic\n   - Compare response times before and after refactoring to identify any performance impacts\n\n4. Error Handling and Edge Case Testing:\n   - Test various error scenarios to ensure proper error responses\n   - Verify logging functionality for both successful and failed requests\n\n5. Security Testing:\n   - Conduct security scans to ensure no new vulnerabilities are introduced\n   - Test authentication and authorization mechanisms remain intact\n\n6. Cross-browser and Cross-platform Testing:\n   - Test API functionality across different browsers and devices\n\n7. Documentation Verification:\n   - Review and validate all updated documentation for accuracy\n\n8. Regression Testing:\n   - Run existing test suites to ensure no unintended side effects\n\n9. Manual Testing:\n   - Perform manual tests of key API functionalities\n   - Verify correct routing behavior for complex URL patterns\n\n10. Continuous Integration:\n    - Set up CI/CD pipeline to run all tests automatically on each commit",
-        "status": "pending",
-        "dependencies": [],
-        "priority": "medium",
         "subtasks": [
           {
             "id": 1,
-            "title": "Create New Folder Structure and Move Files",
-            "description": "Set up the new folder structure in routes/api/ and move existing route files to their new locations.",
+            "title": "Initialize Project Repository",
+            "description": "Set up a new or existing project repository for the Weaverse builder, ensuring version control is enabled.",
             "dependencies": [],
-            "details": "1. Create folders: webhooks/, public/, shopify/, templates/, main/\n2. Move api.github.webhook.ts to webhooks/github.ts\n3. Move api.shopify.webhook.$.ts to webhooks/shopify.ts\n4. Move api.public.$param.ts to public/$param.ts\n5. Move Shopify-related files to shopify/ folder\n6. Move api.template.$templateId.ts to templates/$templateId.ts\n<info added on 2025-06-18T04:52:42.245Z>\n✅ COMPLETED - Subtask 38.1 successfully finished\n\n**Completed Actions:**\n1. Created organized directory structure in routes/api/:\n   - webhooks/ (for webhook handlers)\n   - public/ (for public API endpoints)\n   - shopify/resources/ (for Shopify resource routes)\n   - shopify/billing/ (for Shopify billing routes)  \n   - templates/ (for template routes)\n   - main/ (for main API param/action routes)\n\n2. Successfully moved all API route files to their new locations:\n   - api.github.webhook.ts → api/webhooks/github.ts\n   - api.shopify.webhook.$.ts → api/webhooks/shopify.ts\n   - api.public.$param.ts → api/public/$param.ts\n   - api.shopify.$resource.$input.ts → api/shopify/resources/$resource.$input.ts\n   - api.shopify.$resource.ts → api/shopify/resources/$resource.ts\n   - api.shopify.billing.$action.ts → api/shopify/billing/$action.ts\n   - api.template.$templateId.ts → api/templates/$templateId.ts\n   - api.$param.($action).ts → api/main/$param.$action.ts\n\n**Current Structure:**\n```\napi/\n├── main/$param.$action.ts (487 lines - to be broken down next)\n├── public/$param.ts  \n├── shopify/\n│   ├── resources/$resource.$input.ts\n│   ├── resources/$resource.ts\n│   └── billing/$action.ts\n├── templates/$templateId.ts\n├── upload-image.ts (existing)\n└── webhooks/\n    ├── github.ts\n    └── shopify.ts\n```\n\nAll files moved successfully, ready for next subtask to refactor the main/$param.$action.ts file.\n</info added on 2025-06-18T04:52:42.245Z>\n<info added on 2025-06-18T04:54:41.234Z>\n✅ COMPLETED: Updated /app/routes.ts configuration\n\nAdded explicit route definitions for all reorganized API routes:\n- Webhook routes: /api/github/webhook, /api/shopify/webhook/*\n- Public API: /api/public/:param  \n- Shopify resources: /api/shopify/:resource, /api/shopify/:resource/:input\n- Shopify billing: /api/shopify/billing/:action\n- Templates: /api/template/:templateId\n- Main catch-all: /api/:param/:action? (for the 487-line file to be broken down in 38.2)\n\nBenefits of explicit routes.ts configuration:\n- Clear routing hierarchy and priority\n- Better performance (no file system scanning for API routes)\n- Explicit path-to-file mapping\n- Easier debugging and maintenance\n- Follows React Router 7 best practices\n\n✅ Subtask 38.1 is now FULLY COMPLETE - all files moved AND routes.ts updated!\n</info added on 2025-06-18T04:54:41.234Z>\n<info added on 2025-06-18T04:57:27.932Z>\n🔧 FIXED: Import path issue resolved\n\nUpdated broken import in shopify.webhook.$topic.ts:\n- OLD: `from '~/routes/api.shopify.webhook.$'`\n- NEW: `from '~/routes/api/webhooks/shopify'`\n\nThis legacy route file was importing from the old flat structure location. The import now correctly points to the new organized structure at `api/webhooks/shopify.ts`.\n\n✅ All import paths verified and working correctly - no other broken imports found.\n\nThe API route refactoring is now fully functional with all imports resolved!\n</info added on 2025-06-18T04:57:27.932Z>",
+            "details": "Create or clone the project repository, initialize Git, and set up the basic project structure if not already present.",
             "status": "done",
-            "testStrategy": "Verify folder structure and file locations manually. Use git status to ensure all files are moved correctly."
+            "testStrategy": "Verify that the repository is accessible, Git is initialized, and the project structure is in place."
           },
           {
             "id": 2,
-            "title": "Refactor api.$param.($action).ts File",
-            "description": "Analyze and break down the large api.$param.($action).ts file into logical groupings within the main/ folder.",
+            "title": "Update and Install Core Dependencies",
+            "description": "Ensure Node.js (LTS), TypeScript, and package managers (npm or yarn) are up to date. Install browser-image-compression (latest stable version).",
             "dependencies": [
               1
             ],
-            "details": "1. Analyze api.$param.($action).ts for logical route groupings\n2. Create separate files in main/ for each group (e.g., users.$action.ts, products.$action.ts)\n3. Ensure each new file exports its routes\n4. Remove original api.$param.($action).ts file after migration\n<info added on 2025-06-18T05:01:55.855Z>\nCompleted comprehensive analysis of 487-line main/$param.$action.ts file and identified 8 distinct logical groupings for refactoring.\n\nLOADER FUNCTION GROUPS IDENTIFIED:\n- Media Management (media, free-images)\n- Data Retrieval (template, swatches-and-presets, paginate-blogs)\n- Storefront & GitHub (create-storefront, repo-file)\n- Billing & Subscriptions (plan-data, charge-list, subscribe, get-mantle-customer, get-shop-subscription, handle-subscription)\n- Project Operations (copy-project, invalidate-project-cache)\n- Usage & Analytics (get-shop-view-usage, get-shop-have-project, refresh-cached-shop-data)\n- Chat System (chat-history, chat-conversation)\n\nACTION FUNCTION GROUPS IDENTIFIED:\n- Project Management (save-project, save-project-settings, create-project, cached-page)\n- Page Operations (delete-page, create-localized-page, reset-localized-page, create-page-template, update-page-template, update-custom-page)\n- Media Operations (staged-links, upload-files, update-media-alt, delete-shopify-file, files-upload-check)\n- AI Services (ai, image-to-section, handle-chatbot-request)\n- Chat Operations (delete-chat-conversation)\n- Global Sections (global-section with save/get/delete actions)\n- Shop Configuration (element-schema, presets, product-swatches, shop-meta, storefront-password)\n\nFINALIZED NEW FILE STRUCTURE:\n- media.$action.ts (media operations)\n- projects.$action.ts (project management)\n- pages.$action.ts (page operations)\n- ai.$action.ts (AI services)\n- chat.$action.ts (chat operations)\n- shop.$action.ts (shop configuration)\n- billing.$action.ts (billing & subscriptions)\n- data.$action.ts (data retrieval & analytics)\n\nReady to proceed with creating individual files with shared imports and utilities.\n</info added on 2025-06-18T05:01:55.855Z>\n<info added on 2025-06-18T05:07:08.551Z>\n✅ REFACTORING COMPLETED SUCCESSFULLY\n\nSuccessfully split the 487-line main/$param.$action.ts file into 8 organized, domain-specific files:\n\nCREATED FILES:\n- media.$action.ts (6 routes: media, free-images loaders + 5 media actions)\n- projects.$action.ts (6 routes: 2 project loaders + 4 project actions)\n- pages.$action.ts (7 routes: 6 page actions + global-section)\n- ai.$action.ts (3 routes: ai, image-to-section, handle-chatbot-request actions)\n- chat.$action.ts (3 routes: 2 chat loaders + 1 chat action)\n- shop.$action.ts (7 routes: 2 shop loaders + 5 shop configuration actions)\n- billing.$action.ts (7 routes: all billing and subscription related loaders/actions)\n- data.$action.ts (4 routes: template, create-storefront, repo-file, paginate-blogs loaders)\n\nMIGRATION RESULTS:\n- All 35+ routes successfully migrated and tested\n- Original main/$param.$action.ts file removed\n- Each new file properly exports loader/action functions\n- Shared utilities and imports maintained across all files\n- Route structure updated in routes.ts with explicit patterns\n- Backward compatibility preserved - all existing URLs continue to work\n\nBENEFITS ACHIEVED:\n- Improved code organization and maintainability\n- Clear separation of concerns by domain\n- Easier navigation and debugging\n- Better developer experience\n- Foundation set for future API enhancements\n</info added on 2025-06-18T05:07:08.551Z>\n<info added on 2025-06-18T05:09:55.735Z>\n🎯 OPTIMIZATION: Fixed route parameter patterns for accuracy\n\nROUTE PATTERNS OPTIMIZED:\n- Most routes changed from :action? to :param since they only use params.param\n- Only 2 routes kept :action? where actually needed:\n  - pages/:param/:action? - for global-section sub-actions (save/get/delete)\n  - billing/:param/:action? - for subscribe operations\n- All other routes simplified to :param pattern for better clarity\n\nFINAL OPTIMIZED ROUTES:\n/api/media/:param → media operations\n/api/projects/:param → project management  \n/api/pages/:param/:action? → page operations (needs action for global-section)\n/api/ai/:param → AI services\n/api/chat/:param → chat operations\n/api/shop/:param → shop configuration\n/api/billing/:param/:action? → billing & subscriptions (needs action for subscribe)\n/api/data/:param → data retrieval\n\nBENEFITS:\n- More accurate route patterns that match actual usage\n- Cleaner URLs without unnecessary optional parameters\n- Better performance with specific routing patterns\n- Improved developer understanding of API structure\n\nRoutes.ts now optimized with precise parameter patterns based on actual usage.\n</info added on 2025-06-18T05:09:55.735Z>\n<info added on 2025-06-18T05:12:04.734Z>\n🎯 FINAL OPTIMIZATION: Removed redundant .$action from filenames\n\nFILENAME OPTIMIZATION COMPLETED:\n\nFiles renamed (removed redundant .$action):\n- media.$action.ts → media.ts (only uses params.param)\n- projects.$action.ts → projects.ts (only uses params.param)\n- ai.$action.ts → ai.ts (only uses params.param)\n- chat.$action.ts → chat.ts (only uses params.param)\n- shop.$action.ts → shop.ts (only uses params.param)\n- data.$action.ts → data.ts (only uses params.param)\n\nFiles kept .$action (actually needed):\n- pages.$action.ts - needs params.action for global-section sub-actions\n- billing.$action.ts - needs params.action for subscribe operations\n\nFINAL ACCURATE STRUCTURE:\nroutes/api/main/\n├── media.ts (media operations)\n├── projects.ts (project management)  \n├── pages.$action.ts (page operations - needs $action)\n├── ai.ts (AI services)\n├── chat.ts (chat operations)\n├── shop.ts (shop configuration)\n├── billing.$action.ts (billing - needs $action)\n└── data.ts (data retrieval)\n\nroutes.ts UPDATED to reflect correct filenames\n\nBENEFITS OF ACCURATE NAMING:\n- Filename now matches actual parameter usage\n- No misleading .$action when not needed\n- Clear distinction between files that use action vs those that don't\n- Better developer understanding and maintenance\n- More precise file naming convention\n\n✅ API refactoring now has both optimal route patterns AND accurate filenames\n</info added on 2025-06-18T05:12:04.734Z>\n<info added on 2025-06-18T05:15:02.664Z>\n🎯 SEMANTIC IMPROVEMENT: Updated billing route to use planId parameter\n\nBILLING ROUTE OPTIMIZATION:\n- Route changed: /api/billing/:param/:action? → /api/billing/:param/:planId?\n- Code updated: params.action → params.planId in subscribe functionality\n- Reasoning: The second parameter is specifically a plan ID, not a generic action\n\nEXAMPLE USAGE:\n- URL: /api/billing/subscribe/premium\n- params.param = 'subscribe' \n- params.planId = 'premium'\n\nBENEFITS:\n- More semantic and self-documenting route structure\n- Clearer code that explicitly shows it expects a plan ID\n- Better developer understanding of API structure\n- More precise type safety and parameter naming\n\nFINAL ACCURATE ROUTE STRUCTURE:\n/api/media/:param → media.ts\n/api/projects/:param → projects.ts  \n/api/pages/:param/:action? → pages.$action.ts (global-section sub-actions)\n/api/ai/:param → ai.ts\n/api/chat/:param → chat.ts\n/api/shop/:param → shop.ts\n/api/billing/:param/:planId? → billing.$action.ts (subscribe with plan ID)\n/api/data/:param → data.ts\n\n✅ All route patterns now accurately reflect their actual parameter usage with semantic naming\n</info added on 2025-06-18T05:15:02.664Z>\n<info added on 2025-06-18T05:16:20.656Z>\n🎯 FILENAME CONSISTENCY: Renamed billing file to match parameter semantics\n\nBILLING FILE RENAMED:\n- billing.$action.ts → billing.$planId.ts \n- Updated routes.ts to point to new filename\n- Both route parameter and filename now consistently use planId\n\nCOMPLETE SEMANTIC ALIGNMENT:\n- Route: /api/billing/:param/:planId?\n- File: billing.$planId.ts \n- Code: params.planId\n\nFINAL OPTIMIZED STRUCTURE:\nroutes/api/main/\n├── media.ts (media operations)\n├── projects.ts (project management)  \n├── pages.$action.ts (page operations - needs $action)\n├── ai.ts (AI services)\n├── chat.ts (chat operations)\n├── shop.ts (shop configuration)\n├── billing.$planId.ts (billing - needs $planId) ✨\n└── data.ts (data retrieval)\n\nBENEFITS OF FULL CONSISTENCY:\n- Route parameter, filename, and code all use the same semantic naming\n- No confusion between generic \"action\" and specific \"planId\" \n- Self-documenting file structure\n- Perfect alignment between URL structure and file organization\n\n✅ Subtask 38.2 FULLY COMPLETE with complete semantic consistency across route, filename, and code!\n</info added on 2025-06-18T05:16:20.656Z>",
+            "details": "Check and update Node.js and TypeScript versions. Use npm or yarn to install browser-image-compression (e.g., version 1.0.12 or latest stable).",
             "status": "done",
-            "testStrategy": "Create unit tests for each new file to ensure all routes are correctly exported and functioning."
+            "testStrategy": "Run 'node -v', 'tsc -v', and 'npm list browser-image-compression' to confirm correct versions are installed."
           },
           {
             "id": 3,
-            "title": "Implement Explicit Route Configurations",
-            "description": "Update routes.ts with explicit route() configurations using React Router 7 syntax while maintaining backward compatibility.",
+            "title": "Configure Environment Variables for Shopify Integration",
+            "description": "Set up environment variables for Shopify API keys and endpoints required for the file upload system.",
             "dependencies": [
-              1,
               2
             ],
-            "details": "1. Import all new route files in routes.ts\n2. Use React Router 7's route() function to define each route explicitly\n3. Ensure URL patterns remain the same for backward compatibility\n4. Group related routes together for better organization\n5. Implement lazy loading for route handlers to optimize performance",
-            "status": "pending",
-            "testStrategy": "Write integration tests to verify that all routes are accessible and return expected responses. Test backward compatibility by ensuring old URL patterns still work."
+            "details": "Add necessary environment variables (e.g., SHOPIFY_API_KEY, SHOPIFY_API_SECRET, SHOPIFY_ENDPOINT) to the project's .env file or environment configuration.",
+            "status": "done",
+            "testStrategy": "Check that environment variables are loaded correctly by logging them in a development build (without exposing secrets)."
           },
           {
             "id": 4,
-            "title": "Update Import Paths and Implement Error Handling",
-            "description": "Update import paths throughout the project and implement consistent error handling and logging in route handlers.",
+            "title": "Integrate browser-image-compression with media.ts Infrastructure",
+            "description": "Modify or extend the existing media.ts module to utilize browser-image-compression for image processing before upload.",
             "dependencies": [
-              2,
-              3
+              2
             ],
-            "details": "1. Search for all files importing from old route locations\n2. Update import statements to reflect the new file structure\n3. Add try/catch blocks in route handlers\n4. Implement consistent error responses\n5. Set up logging for route access and errors\n6. Consider adding caching mechanisms for frequently accessed routes",
-            "status": "pending",
-            "testStrategy": "Run the entire test suite to catch any broken imports. Write specific tests for error handling to ensure proper error responses and logging."
+            "details": "Import browser-image-compression in media.ts, implement image compression logic using async/await or Promise syntax, and ensure compatibility with the current file handling workflow.",
+            "status": "done",
+            "testStrategy": "Write unit tests or manual tests to verify that images are compressed as expected before upload."
           },
           {
             "id": 5,
-            "title": "Update Documentation and Perform Final Testing",
-            "description": "Create new API routes documentation, update existing documentation, and perform comprehensive testing of the refactored system.",
+            "title": "Connect and Test Shopify File Upload System",
+            "description": "Ensure the compressed images from media.ts are correctly uploaded to Shopify using the configured API and endpoints.",
             "dependencies": [
-              1,
-              2,
               3,
               4
             ],
-            "details": "1. Create new API routes documentation reflecting the new structure\n2. Update any existing documentation referencing the old file structure\n3. Perform end-to-end testing of all API routes\n4. Conduct load testing to ensure performance under high traffic\n5. Verify backward compatibility with existing integrations\n6. Review and update API-related unit and integration tests",
+            "details": "Implement or verify the upload logic to Shopify, making sure it uses the compressed image output and handles responses and errors appropriately.",
+            "status": "done",
+            "testStrategy": "Perform end-to-end tests by uploading sample images and confirming successful uploads in the Shopify admin or via API responses."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Remove Legacy Upload Endpoint and Route",
+        "description": "Remove the old `/api/upload-image` endpoint and route to prevent future usage and ensure backward compatibility.",
+        "details": "Delete builder/app/routes/api/upload-image.ts and remove the corresponding route from builder/app/routes.ts. Ensure no references to the old endpoint remain in the codebase.",
+        "testStrategy": "Test that the old endpoint is no longer accessible and that all references are removed. Check for any breaking changes in the chat interface.",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Update UploadImage Component to Use media.ts Endpoints",
+        "description": "Refactor the UploadImage component to use the new media.ts endpoints for image uploads.",
+        "details": "Modify builder/app/modules/chatbot/upload-image.tsx to use `/api/media/staged-links` and `/api/media/upload-files` endpoints. Implement file selection and upload logic using the new endpoints. Ensure proper TypeScript typing from ~/types/media.",
+        "testStrategy": "Test file selection, upload initiation, and response handling. Verify that the component works with the new endpoints and maintains backward compatibility.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Image Compression and Validation",
+        "description": "Add image compression and file validation to the upload process.",
+        "details": "Integrate browser-image-compression (v1.0.12) to compress images before upload (max 2MB, max dimension 1024px). Implement file type and size validation. Use async/await for compression and validation steps.",
+        "testStrategy": "Test with various image types and sizes. Verify compression and validation logic, including error handling for invalid files.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Add Loading States and Error Handling",
+        "description": "Implement loading states and robust error handling for the upload process.",
+        "details": "Update builder/app/modules/chatbot/input-area.tsx to manage upload state (loading, success, error). Display user feedback during uploads. Handle errors from compression, validation, and Shopify uploads.",
+        "testStrategy": "Test upload states and error messages. Simulate network errors and invalid files to ensure graceful handling.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          4
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Integrate Staged Upload and Shopify File Creation",
+        "description": "Implement the staged upload process and async Shopify file record creation.",
+        "details": "Use `/api/media/staged-links` to get upload URLs. Upload compressed files to staged links. Use `/api/media/upload-files` to finalize and create Shopify file records asynchronously. Ensure non-blocking UI during uploads.",
+        "testStrategy": "Test staged upload flow and async file creation. Verify that Shopify file records are created and accessible via CDN.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Optimize Upload Performance and User Feedback",
+        "description": "Optimize the upload process for chat performance and provide clear user feedback.",
+        "details": "Implement progress indicators for uploads. Optimize chunking and parallel uploads if needed. Ensure user feedback is clear and timely. Leverage Shopify CDN for fast delivery.",
+        "testStrategy": "Test upload performance with large files. Verify progress indicators and user feedback. Check CDN delivery speed.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          4,
+          5,
+          6
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Final Testing and Backward Compatibility Check",
+        "description": "Perform comprehensive testing and ensure backward compatibility with the chat interface.",
+        "details": "Test all upload scenarios (success, error, cancellation). Verify that no breaking changes are introduced to the chat interface. Ensure all error messages are user-friendly and actionable.",
+        "testStrategy": "End-to-end testing of the upload flow. Regression testing of chat interface. User acceptance testing for feedback clarity.",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Two-Stage AI Model Workflow for Code Generation",
+        "description": "Implement an intelligent code generation workflow using Vercel v0 model for initial code generation from image/text prompts, with conditional refinement to meet Weaverse standards.",
+        "status": "in-progress",
+        "dependencies": [
+          7,
+          8
+        ],
+        "priority": "high",
+        "details": "1. Implement AI Developer Mode decision logic in `handleDeveloperWorkflow()`:\n   - Trigger developer mode for image upload + \"create section\" or text-only prompts\n   - Select appropriate tools for code generation\n\n2. Integrate Vercel v0 model:\n   - Create new tool to generate initial code using Vercel v0 model\n   - Accept both image links and text prompts as input\n\n3. Implement code quality assessment:\n   - Evaluate Vercel v0 output against Weaverse standards\n   - Return directly if quality meets standards\n   - Refine code to meet standards when quality is insufficient\n\n4. Remove legacy components:\n   - Eliminate TwoStageWorkflowOrchestrator and related orchestration\n   - Remove UI settings/toggles for old two-stage feature\n   - Delete twoStageSettings from API schema\n\n5. Streamline user experience:\n   - Auto-trigger workflow on image upload + \"create section\"\n   - Use single progress indicator\n\n6. Error handling:\n   - Implement fallback for Vercel v0 failures\n   - Maintain robust API error handling",
+        "testStrategy": "1. Core Functionality Testing:\n   - Verify image/text prompts trigger Vercel v0 workflow\n   - Test quality assessment: direct return vs refinement paths\n   - Validate output meets Weaverse component structure and Tailwind v4\n\n2. Integration Testing:\n   - Test Vercel v0 API integration with image/text inputs\n   - Verify removal of twoStageSettings and related UI\n\n3. Quality Assessment Testing:\n   - Validate quality checks against Weaverse standards\n   - Test refinement process with substandard inputs\n\n4. Performance Testing:\n   - Measure Vercel v0 response times\n   - Compare refined vs direct output performance\n\n5. Edge Case Testing:\n   - Test corrupted/invalid images\n   - Verify behavior during Vercel v0 API outages\n   - Test ambiguous text prompts\n\n6. Regression Testing:\n   - Ensure non-image workflows remain functional\n   - Confirm legacy component removal doesn't break features",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Vercel v0 Integration and Workflow Logic",
+            "description": "Refactor handleDeveloperWorkflow() to integrate Vercel v0 model with quality assessment and refinement pathways.",
+            "dependencies": [],
+            "details": "1. Add Vercel v0 API integration handling image/text inputs\n2. Implement quality assessment logic for generated code\n3. Create refinement pathway for substandard outputs\n4. Add developer mode triggering logic\n5. Implement fallback for Vercel v0 failures\n<info added on 2025-06-20T09:01:12.499Z>\nCreate a new tool/function for AI model selection when users request Weaverse section code generation. Tool should be available for AI to choose instead of self-generating code. Focus on tool availability rather than automatic workflow orchestration. Tool integrates with Vercel v0 API, receives image/text inputs, assesses output quality, and refines code before returning to user.\n</info added on 2025-06-20T09:01:12.499Z>\n<info added on 2025-06-20T09:05:23.881Z>\n✅ IMPLEMENTATION COMPLETE: Successfully created generateCodeWithVercel tool for AI model selection\n\nImplementation Details:\n- Created vercel-code-generation.ts tool with Zod schema validation\n- Integrated with existing generateReactCodeFromImage function for Vercel v0 API calls\n- Implemented comprehensive quality assessment logic for Weaverse compatibility:\n  * Validates @weaverse/hydrogen imports and patterns\n  * Checks forwardRef usage and proper exports\n  * Assesses modern React patterns and TypeScript integration\n  * Provides 1-10 scale scoring with detailed improvement suggestions\n- Added structured response format with automatic refinement recommendations\n- Registered tool in index.ts for AI discovery and selection\n- Includes proper error handling and logging throughout workflow\n\nTool now available for AI to choose when users request Weaverse section code generation, providing intelligent quality assessment and conditional refinement based on established compatibility criteria.\n</info added on 2025-06-20T09:05:23.881Z>\n<info added on 2025-06-20T09:09:58.128Z>\n🔄 IMPLEMENTATION UPDATED: Refactored to use prompt-based AI quality assessment instead of manual analysis\n\n📝 User Feedback Addressed:\n- Removed manual assessCodeQuality() function per user request\n- Integrated proper prompt-based assessment using existing DEVELOPER_SYSTEM_PROMPT\n- Uses AI model for intelligent code quality evaluation instead of hardcoded rules\n\n🛠️ Refactoring Changes Made:\n1. **Removed Manual Assessment**: Eliminated hardcoded quality checking logic\n2. **AI-Powered Assessment**: Now uses generateObject() with the existing DEVELOPER_SYSTEM_PROMPT for intelligent evaluation\n3. **Proper Model Integration**: Uses the configured model from '../model' instead of hardcoded model ID\n4. **Structured AI Response**: AI provides structured assessment with score, issues, suggestions, and optionally refined code\n5. **Comprehensive Prompting**: Assessment prompt includes Weaverse compatibility criteria, React/TypeScript quality standards, and Shopify integration patterns\n\n🎯 Enhanced AI Assessment Features:\n- Uses existing DEVELOPER_SYSTEM_PROMPT for consistent evaluation standards\n- AI analyzes code against 4 weighted criteria: Weaverse compatibility (40%), React/TypeScript quality (30%), Shopify integration (20%), code structure (10%)\n- AI can optionally provide refined code that addresses identified issues\n- Proper fallback handling if AI assessment fails\n- More intelligent and context-aware quality evaluation\n\n✅ Technical Implementation:\n- Fixed import to use generateObject from 'ai' package\n- Uses existing model from '../model' for consistency\n- Proper TypeScript typing with fallback values\n- Structured response format with comprehensive metadata\n- Error handling and logging throughout\n\nThe tool now leverages the sophisticated AI system and existing prompts instead of manual rule-based assessment, providing much more intelligent and contextual code quality evaluation.\n</info added on 2025-06-20T09:09:58.128Z>\n<info added on 2025-06-20T09:19:51.008Z>\n📋 ADDITIONAL IMPROVEMENT COMPLETED: Prompt System Consolidation\n\n🔄 User-Requested Enhancement:\n- Successfully merged two separate prompt files into unified system\n- Eliminated redundancy and improved maintainability\n\n✅ Consolidation Details:\n1. **Created Unified Prompt**: Combined developer-system-prompt.ts and image-to-section.md into unified-developer-prompt.md\n2. **Updated All References**: Modified 4 files to use new unified prompt:\n   - vercel-code-generation.ts\n   - image-to-section.ts \n   - prompt.ts\n   - default-config.ts\n3. **Cleaned Up Redundant Files**: Removed old prompt files to eliminate duplication\n4. **Fixed SSR Error**: Resolved build error caused by missing developer-system-prompt reference\n5. **Code Formatting**: Applied biome formatting to all updated files\n\n🎯 Benefits Achieved:\n- Single source of truth for all developer prompts\n- Reduced maintenance overhead\n- Consistent AI behavior across all tools\n- Cleaner codebase architecture\n- Eliminated SSR build errors\n\nThe Vercel v0 code generation tool now uses the same comprehensive prompt system as all other developer tools, ensuring consistent and high-quality AI responses across the entire development workflow.\n</info added on 2025-06-20T09:19:51.008Z>\n<info added on 2025-06-20T09:27:09.137Z>\n🎯 INTELLIGENT CONTEXT DETECTION IMPLEMENTED: Fixed AI developer mode recognition\n\n🔍 Issue Identified:\n- When users said \"💻 Developer Mode\" with image upload, AI wasn't directly using generateCodeWithVercel tool\n- Context detection wasn't recognizing explicit developer mode requests\n- generateCodeWithVercel tool wasn't included in developer context filtering\n\n✅ Solution Implemented:\n1. **Enhanced Context Keywords**: Added explicit developer mode detection terms:\n   - \"developer mode\", \"dev mode\", \"💻 developer mode\"\n   - \"vercel\", \"code generation\", \"component files\"\n   \n2. **Improved Image Context Detection**: Added priority-based explicit mode detection:\n   - Explicit developer terms get highest priority when image is attached\n   - Recognizes \"💻 Developer Mode\" as immediate developer context trigger\n   \n3. **Tool Prioritization**: Updated developer tools filtering to include and prioritize generateCodeWithVercel:\n   - Added generateCodeWithVercel to developer tools list\n   - Made it the #1 priority tool in developer mode\n   - Ensures AI chooses Vercel tool directly instead of asking for clarification\n\n🚀 Result: \nNow when users upload image and say \"💻 Developer Mode\", the AI will:\n- Detect developer context immediately\n- Have generateCodeWithVercel as primary available tool\n- Generate code directly with Vercel v0 without asking studio/dev mode questions\n\nFiles Updated:\n- builder/app/.server/ai/index.ts: Added tool to developer context filtering\n- builder/app/.server/ai/config/default-config.ts: Enhanced keyword detection  \n- builder/app/.server/ai/core/context-manager.ts: Improved image context logic\n</info added on 2025-06-20T09:27:09.137Z>\n<info added on 2025-06-20T09:30:37.980Z>\n🐛 DEBUGGING ENHANCEMENT: Fixed context detection for \"Generate weaverse section from this image\"\n\n🔍 Issue Reported:\n- User prompt: \"Generate weaverse section from this image\" \n- Expected: Developer mode detection\n- Actual: Auto mode (not detecting developer context)\n\n🛠️ Debug Solution Implemented:\n\n1. Enhanced Keywords Coverage:\n   - Added \"generate section\", \"generate weaverse section\"\n   - Added \"weaverse section\", \"section from\", \"section from image\"\n   - Now covers multiple variations of section generation requests\n\n2. Comprehensive Debug Logging:\n   Added detailed context detection debug output showing:\n   - Original prompt and lowercase version\n   - Image attachment status\n   - Developer vs studio keyword matches count\n   - List of matched keywords\n   - Specific keyword that triggered detection\n\n3. Improved Detection Logic:\n   - Added explicit term matching with debug output\n   - Shows which specific keyword triggered the detection\n   - Logs the decision-making process step by step\n\n🎯 Expected Result:\nNow \"Generate weaverse section from this image\" should:\n- Match \"generate weaverse section\" OR \"weaverse section\" OR \"section from\" \n- Log: \"🎯 DEVELOPER: Matched explicit term: 'weaverse section'\"\n- Return developer context correctly\n- Use generateCodeWithVercel tool as primary option\n\n📝 Files Updated:\n- context-manager.ts: Enhanced keyword detection + comprehensive debug logging\n- default-config.ts: Added section generation keywords\n\n🧪 Ready for Testing: Debug logs will now show exactly why context detection succeeds or fails for any prompt.\n</info added on 2025-06-20T09:30:37.980Z>\n<info added on 2025-06-20T09:36:47.558Z>\n🎯 SIMPLIFIED APPROACH: Removed AI assessment step, send developer prompt directly to Vercel v0\n\n🔄 User Feedback Implemented:\n- Removed complex assessCodeQualityWithAI() function  \n- Eliminated two-step process (generate → assess → refine)\n- Now sends comprehensive developer prompt directly to Vercel v0 model\n- Let Vercel v0 understand and implement Weaverse requirements from the start\n\n✅ Simplified Implementation:\n\n1. Single-Step Process: Direct prompt → Vercel v0 → quality code\n2. Comprehensive Prompting: Includes full UNIFIED_DEVELOPER_PROMPT with specific Weaverse requirements:\n   - Component File (index.tsx): Use forwardRef for proper DOM element access, Import from @weaverse/hydrogen and @shopify/hydrogen, Extend HydrogenComponentProps interface, Export component as default\n   - Schema Definition: Use createSchema() function from @weaverse/hydrogen, Include proper component settings/inputs, Export as 'schema'\n   - TypeScript Definitions (if needed): Proper interface extending HydrogenComponentProps, Include all component props with correct types\n\n3. Clean Response: Returns generated code directly without complexity of assessment metadata\n\n🚀 Benefits:\n- Much simpler and faster workflow\n- Relies on Vercel v0's capability to understand detailed requirements\n- Eliminates potential AI assessment errors\n- More straightforward user experience\n- Better performance (single API call vs multiple calls)\n\n📁 Technical Changes:\n- Removed 80+ lines of assessment logic\n- Fixed function signature to use proper CoreMessage[] format\n- Returns result.reactCode directly as code in response\n- Handles both image and text-only prompts correctly\n\n🎯 Result: Tool now sends rich context directly to Vercel v0, trusting it to generate proper Weaverse-compatible code from comprehensive instructions rather than post-processing.\n</info added on 2025-06-20T09:36:47.558Z>\n<info added on 2025-06-20T09:41:44.480Z>\n🐛 CRITICAL FIXES: Resolved tool selection conflict and token limit issues\n\n🔍 Problems Identified from Logs:\n\n1. Tool Selection Conflict: AI was choosing unifiedImageToSection instead of generateCodeWithVercel even though both were available in developer mode\n2. System Prompt Too Large: \"System prompt and tools are too large, might exceed token limit\" causing severe message trimming\n\n🛠️ Solutions Implemented:\n\nFix 1: Removed Tool Conflict\n- Removed unifiedImageToSection from developer tools filtering list\n- Now developer mode only has generateCodeWithVercel for image-to-code generation\n- Eliminates confusion between similar tools\n- Forces AI to use the correct Vercel v0 tool\n\nFix 2: Created Concise Developer Prompt\n- Created CONCISE_DEVELOPER_PROMPT (compact version) for system context\n- Replaced large UNIFIED_DEVELOPER_PROMPT in chatbot config to avoid token limits\n- generateCodeWithVercel tool still uses full UNIFIED_DEVELOPER_PROMPT internally when calling Vercel v0\n- Maintains comprehensive context for code generation while reducing system prompt size\n\n📊 Technical Changes:\nOLD Developer Tools (conflict): ['generateCodeWithVercel', 'generateCode', 'generateSchemas', 'getShopifyResourcesFieldsInfo', 'unifiedImageToSection', ...]\nNEW Developer Tools (focused): ['generateCodeWithVercel', 'generateCode', 'generateSchemas', 'getShopifyResourcesFieldsInfo', ...]\n\nOLD: Large unified prompt causing token limits - developer: UNIFIED_DEVELOPER_PROMPT (~3000+ characters)\nNEW: Concise prompt for system context - developer: CONCISE_DEVELOPER_PROMPT (~800 characters)\n\n🎯 Expected Result:\nNow when user says \"Generate weaverse section from this image\", AI should:\n- Detect developer context correctly (already working)\n- See only generateCodeWithVercel tool available for image-to-code\n- Choose generateCodeWithVercel without confusion\n- Avoid token limit issues with concise system prompt\n- Still generate high-quality code using full context internally\n\n📁 Files Updated:\n- index.ts: Removed unifiedImageToSection from developer context\n- default-config.ts: Added concise developer prompt + updated config\n</info added on 2025-06-20T09:41:44.480Z>\n<info added on 2025-06-20T09:46:35.363Z>\nFixed critical generateReactCodeFromImage function that was returning Vercel v0 error instead of actual React code. Root cause was massive 17k+ character prompt overwhelming Vercel v0 model. Solution: Created focused 300-character prompt optimized for Vercel v0's React generation capabilities, removed complex Weaverse instructions that confused the model, and improved error handling with proper result.reactCode access. Function now generates actual React components instead of \"I'm sorry. I'm not able to assist with that.\" error responses.\n</info added on 2025-06-20T09:46:35.363Z>\n<info added on 2025-06-20T09:52:33.517Z>\nFixed critical UI display issue where AI agent wasn't showing generated code to users despite successful tool execution. Enhanced CONCISE_DEVELOPER_PROMPT with explicit instructions for AI to always display tool results in chat. Added step-by-step guidance for tool result handling: extract code from generateCodeWithVercel response, format in markdown code blocks, and explain component features to user. This ensures the 6,751+ character React components generated by the tool are properly presented to users instead of the AI staying silent after successful tool execution.\n</info added on 2025-06-20T09:52:33.517Z>",
+            "status": "done",
+            "testStrategy": "Unit tests for Vercel v0 API integration, quality assessment logic tests, refinement pathway validation, fallback behavior tests"
+          },
+          {
+            "id": 2,
+            "title": "Remove Legacy Components and Streamline UX",
+            "description": "Eliminate deprecated two-stage elements and simplify user interaction flow.",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Delete TwoStageWorkflowOrchestrator component and related files\n2. Remove UI toggles/settings for old two-stage workflow\n3. Prune twoStageSettings from API schema\n4. Implement single progress indicator\n5. Configure auto-trigger on image upload + 'create section'",
             "status": "pending",
-            "testStrategy": "Conduct a full regression test suite. Perform manual testing of critical paths. Use tools like Postman or Insomnia to test API endpoints systematically."
+            "testStrategy": "UI rendering tests, end-to-end workflow triggering tests, schema validation"
+          },
+          {
+            "id": 3,
+            "title": "Implement Quality Enforcement and Error Resilience",
+            "description": "Establish quality standards and robust error handling for generated code.",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Define Weaverse quality standards validators\n2. Implement Tailwind v4 syntax enforcement\n3. Create error boundaries with retry mechanisms\n4. Add logging for quality assessment events\n5. Implement refinement process for substandard code",
+            "status": "pending",
+            "testStrategy": "Quality validator unit tests, Tailwind v4 linter checks, error injection tests, refinement process validation"
           }
         ]
       }
     ],
     "metadata": {
       "created": "2025-06-17T15:07:11.528Z",
-      "updated": "2025-06-18T05:07:21.093Z",
+      "updated": "2025-06-20T09:05:29.268Z",
       "description": "Tasks for master context"
     }
   }

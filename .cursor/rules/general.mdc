@@ -3,40 +3,92 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Linter
-- **Never auto-fix** linter errors.  
-- Notify the user; fix only when expressly asked.
-- Fix TypeScript errors if they exist, but don't try to fix linting issues.
 
-# Function Size
-- Keep each function **≤ 5 lines**.  
-- If it grows, extract clear, single-purpose helpers.  
-- Clarity beats brevity; use descriptive names, no hidden side effects.
+### **Linter Policy**
+- Fix TypeScript errors but don't auto-fix linting/coding style issues, utilize biome fix to fix lint/code style
 
-# General Code Style & Formatting
-- English only.  
-- One export per file; kebab-case filenames.  
-- Follow Biome; braces always; semicolons; line length ≤ 120 chars.  
-- No commented-out code; pass all lint checks.
-- Use `let` by default for variable declarations.
+### **Code Structure**
+- Functions **≤ 5 lines**, extract helpers if larger
+- Single responsibility, **< 20 lines** overall
+- One export per file, kebab-case filenames
+- Use `let` by default for variable declarations
 
-# Naming
-- **PascalCase**: classes, enums, types.  
-- **camelCase**: variables, functions, methods.  
-- **UPPER_SNAKE_CASE**: constants, env vars.  
-- Booleans start with *is/has/can/should*.  
-- No Hungarian or cryptic abbreviations; keep terminology consistent.
+### **Style & Formatting**
+- English only, follow Biome formatting
+- Braces always, semicolons, line length ≤ 120 chars
+- No commented-out code, pass all lint checks
 
-# Functions & Logic
-- Single responsibility; aim **< 20 lines** overall.  
-- Use early returns to avoid deep nesting.  
-- Prefer `map | filter | reduce`; arrows for small callbacks.  
-- RO-RO: receive/return objects for multi-param calls.  
-- Pure functions where possible; handle errors explicitly.
+### **Naming Conventions**
+- **PascalCase**: classes, enums, types
+- **camelCase**: variables, functions, methods
+- **UPPER_SNAKE_CASE**: constants, env vars
+- Booleans start with *is/has/can/should*
 
-# Data Handling
-- Use `readonly`, `ReadonlyArray` for immutable data structures.  
-- Avoid `any`; use strict types, generics, interfaces.  
-- Validate external data at boundaries.  
-- Handle `null/undefined` with optional chaining or defaults.  
-- Minimize global mutable state; clean up resources.
+### **Data Handling**
+- Use `readonly`, `ReadonlyArray` for immutable data
+- Avoid `any`, use strict types and generics
+- Handle `null/undefined` with optional chaining
+- Minimize global mutable state
+
+## **Biome Linting Rules (biome-linting.mdc)**
+
+### **Configuration Detection**
+1. Find nearest `biome.json` in current/parent directories
+2. Use project root `biome.json` (builder/, weaverse/)
+3. Fall back to shared `@weaverse/biome` package
+
+### **Auto-Fix Workflow**
+```bash
+# Primary command (check availability first)
+npm run biome:fix
+
+# Manual fallback
+npx biome check --write
+```
+
+### **Project-Specific Settings**
+- **Builder**: `noExplicitAny: "off"`, excludes Prisma files
+- **Weaverse**: `useConst: "off"`, accessibility warnings
+- **Shared Base**: Single quotes, space indentation, security rules disabled
+
+### **Resolution Process**
+1. Check if `npm run biome:fix` exists in package.json
+2. Suggest auto-fix before manual corrections
+3. Follow detected Biome configuration rules
+4. **Never auto-fix without user consent**
+
+## **Interactive Feedback Rules (interactive_feedback.mdc)**
+
+### **When to Use**
+- When needing clarification on implementation decisions
+- When user requests are ambiguous
+- **Always before completing any request**
+
+### **Project Directory Detection**
+- **Builder**: `/Users/paul/Workspace/weaverse-project/builder`
+- **Weaverse**: `/Users/paul/Workspace/weaverse-project/weaverse`
+- **Workspace**: `/Users/paul/Workspace/weaverse-project/workspace`
+
+### **Memory-Saving Integration**
+- Always include prompt: *"Would you like me to save any insights from this chat to Cursor memory?"*
+- Focus on reusable patterns, solutions, project-specific knowledge
+- Save integration patterns, troubleshooting solutions, custom implementations
+
+### **Workflow**
+1. Call `mcp_interactive-feedback-mcp_interactive_feedback` when clarification needed
+2. Provide appropriate project directory and summary
+3. Wait for response before proceeding
+4. If empty response, proceed without calling again
+5. Address feedback if provided before completion
+
+### **Best Practices**
+- Keep summaries concise but descriptive
+- Use full absolute paths for project directories
+- Respect empty feedback as approval to proceed
+- Include memory-saving prompt in completion summaries
+
+## **Key Integration Points**
+
+- **Linting**: Never auto-fix → suggest `npm run biome:fix` → wait for user approval
+- **Feedback**: Always seek clarification → complete with memory prompt → save insights if requested
+- **Code Quality**: Follow Biome config → keep functions small → use strict typing → clean naming

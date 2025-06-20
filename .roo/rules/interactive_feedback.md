@@ -1,7 +1,7 @@
 ---
-description: Interactive Feedback Rule
+description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 # Interactive Feedback Rule - Builder & Weaverse Projects
 

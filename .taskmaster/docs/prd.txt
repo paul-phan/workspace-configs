@@ -191,4 +191,63 @@ Transform Shopify theme development from manual coding to AI-assisted design, en
 
 ## Conclusion
 
-Weaverse AI represents a significant opportunity to revolutionize Shopify theme development through intelligent automation. With strong existing infrastructure and clear market need, focused execution on the outlined roadmap will establish Weaverse as the leading AI-powered theme development platform. 
+Weaverse AI represents a significant opportunity to revolutionize Shopify theme development through intelligent automation. With strong existing infrastructure and clear market need, focused execution on the outlined roadmap will establish Weaverse as the leading AI-powered theme development platform.
+
+# Upload Image Optimization Project
+
+## Project Overview
+Integrate the chatbot's image upload functionality with the existing media.ts upload system to provide optimized Shopify-backed image uploads with compression and proper error handling.
+
+## Background
+The current chatbot upload-image.tsx component uses a simple `/api/upload-image` endpoint that returns hardcoded URLs. This needs to be replaced with the robust media.ts upload system that provides:
+- Proper Shopify integration
+- Image compression
+- Staged upload process
+- Error handling
+- CDN delivery
+
+## Goals
+- Replace simple upload endpoint with media.ts system
+- Implement image compression for chat uploads
+- Add proper loading states and error handling
+- Optimize upload process for chat performance
+- Maintain backward compatibility
+
+## Technical Requirements
+
+### Frontend Changes
+- Update UploadImage component to use media.ts endpoints
+- Implement three-step upload process: compression → staged links → upload
+- Add loading states and error handling
+- Provide user feedback during uploads
+
+### Backend Integration
+- Use existing `/api/media/staged-links` endpoint
+- Use existing `/api/media/upload-files` endpoint
+- Remove old `/api/upload-image` endpoint and route
+- Leverage existing Shopify infrastructure
+
+### Optimization Features
+- Image compression with chat-optimized settings (2MB max, 1024px max dimension)
+- Proper file validation (type and size limits)
+- Async Shopify file record creation (non-blocking)
+- Error recovery and user feedback
+
+## Success Criteria
+- Chat image uploads use optimized media.ts system
+- Images are compressed and delivered via Shopify CDN
+- Upload process provides clear feedback to users
+- Error handling gracefully manages upload failures
+- No breaking changes to chat interface
+
+## Files Modified
+- builder/app/modules/chatbot/upload-image.tsx (updated to use media.ts)
+- builder/app/modules/chatbot/input-area.tsx (added upload state management)
+- builder/app/routes.ts (removed old upload-image route)
+- builder/app/routes/api/upload-image.ts (deleted - no longer needed)
+
+## Dependencies
+- Existing media.ts upload infrastructure
+- browser-image-compression library
+- Shopify file upload system
+- Existing type definitions in ~/types/media 

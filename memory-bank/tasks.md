@@ -1,197 +1,191 @@
-# TASKS: Weaverse Agent - VAN Mode Initialization
+# TASKS: Two-Stage AI Code Generation Workflow
 
 ## CURRENT TASK CONTEXT
-**Task ID**: VAN-AGENT-001
-**Task Type**: Project Analysis & Initialization
-**Mode**: VAN (Initialization Phase)
+**Task ID**: AI-CODEGEN-001
+**Task Type**: Feature Enhancement
+**Mode**: Development
 **Priority**: High
-**Status**: In Progress - Platform & File Verification Complete
-**Created**: Now
+**Status**: IN PROGRESS - Subtasks 9.1, 9.2 & 9.3 Complete
+**Created**: 2025-01-20
 **Assigned**: AI Assistant
 
 ## TASK DESCRIPTION
-**Objective**: Complete VAN mode initialization for Weaverse Agent project
-**Scope**: Analyze existing project, complete Memory Bank setup, determine complexity level, and prepare for next phase
+**Objective**: Implement a two-stage AI model workflow for enhanced code generation in developer mode
+**Scope**: Use vercelModel for initial React code generation, then refine with Claude for Weaverse best practices
 
-**Background**: User invoked VAN mode on the Weaverse Agent project. This WebSocket server appears to be already implemented and production-ready, but needs proper analysis and task classification.
+**Background**: Current code generation uses a single model. By leveraging vercelModel's strength in React/UI generation and Claude's understanding of Weaverse patterns, we can produce higher quality component code.
 
-## MEMORY BANK INITIALIZATION CHECKLIST
+## IMPLEMENTATION PROGRESS
 
-### Phase 1: Core Memory Bank Structure
-- [x] Create `projectbrief.md` - ✅ Complete
-- [x] Create `techContext.md` - ✅ Complete  
-- [x] Create `systemPatterns.md` - ✅ Complete
-- [x] Create `activeContext.md` - ✅ Complete
-- [x] Create `progress.md` - ✅ Complete
-- [x] Create `tasks.md` - ✅ Complete
+### ✅ Completed: Subtask 9.1 - Integrate vercelModel API
+**Status**: DONE
+**Key Changes**:
+- Updated `image-provider.ts` to load and use `image-to-section.md` prompt
+- Added system prompt to vercelModel's generateText call
+- Implemented proper error handling and logging
+- Added fallback prompt for robustness
+- Set temperature=0 and maxTokens=4000 for consistent output
 
-### Phase 2: VAN Mode Process Flow
-- [x] **Platform Detection** ✅ COMPLETE
-  - [x] Detect Operating System: macOS (darwin 24.5.0)
-  - [x] Check Path Separator: Forward slash (/)
-  - [x] Adapt Commands: No adaptation needed for macOS
-  - [x] ⛔ Platform Checkpoint: ✅ PASSED
+### ✅ Completed: Subtask 9.2 - Integrate Claude API for Code Refinement
+**Status**: DONE
+**Key Changes**:
+- Created `claude-refinement.md` prompt specifically for refinement stage
+- Updated `streamWeaverseCode` to detect refinement stage automatically
+- Added intelligent prompt selection based on message context
+- Maintained backward compatibility with existing workflow
+- **Enhanced with Tailwind CSS v4 requirements**:
+  - Critical styling guidelines (important modifiers at beginning: `!text-red-500`)
+  - Modern Tailwind v4 syntax and configuration options
+  - Validation against Tailwind v4 requirements
+  - Leverage new v4 features (container queries, color spaces)
+  - Responsive design with proper breakpoint usage
 
-- [x] **Basic File Verification** ✅ COMPLETE
-  - [x] Memory Bank Structure: Created and verified
-  - [x] Essential Components Check: All core files present
-  - [x] Project Files Batch Verification: Source code, config, docs verified
-  - [x] Build Test: ✅ Build successful (3.35 KB bundle in 16ms)
-  - [x] ⛔ Basic File Checkpoint: ✅ PASSED
+### ✅ Completed: Subtask 9.3 - Develop Two-Stage Workflow Logic
+**Status**: DONE
+**Key Changes**:
+- Created `TwoStageWorkflowOrchestrator` class for robust workflow management
+- Implemented comprehensive error handling with custom error types
+- Added retry logic with exponential backoff (1s, 2s, 4s delays)
+- Built-in fallback mechanism to single-stage if two-stage fails
+- Progress tracking callbacks for UI feedback
+- React code validation between stages
+- Configurable workflow options (enable/disable, retry attempts, fallback)
+- Enhanced `handleImageToSectionNew` to use orchestrator
+- Maintains backward compatibility with existing API
 
-- [ ] **Complexity Determination** 🔄 IN PROGRESS
-  - [x] Analyze Task Requirements: Project appears complete and production-ready
-  - [x] Check Task Keywords: No specific implementation keywords - seems like analysis/review
-  - [x] Assess Scope Impact: Minimal - existing codebase is well-structured
-  - [x] Evaluate Risk Level: Low - no major changes needed
-  - [x] Estimate Implementation Effort: Minimal - appears to be analysis task
-  - [ ] ⛔ Complexity Checkpoint: Ready for assessment
+**Key Findings**:
+- Claude integration was already functional in `streamWeaverseCode`
+- Two-stage workflow confirmed and optimized:
+  - Stage 1: vercelModel generates React code with image-to-section.md prompt
+  - Stage 2: Claude refines with claude-refinement.md prompt for Weaverse best practices + Tailwind CSS v4
+- Automatic detection of refinement stage based on message patterns
+- Production-ready workflow with robust error handling
 
-## PLATFORM VERIFICATION RESULTS
-✅ **PLATFORM CHECKPOINT PASSED**
-- **Operating System**: macOS 24.5.0 (Darwin) ✅
-- **Shell**: /bin/zsh ✅  
-- **Path Format**: Unix forward slash (/) ✅
-- **Bun Runtime**: v1.2.14 ✅
-- **Node.js**: v22.16.0 ✅
-- **npm**: v10.9.2 ✅
-- **Command Adaptation**: None required ✅
+## STYLING REQUIREMENTS
+**CRITICAL**: This project uses **Tailwind CSS v4**. All generated code must follow v4-specific syntax:
+- Important modifiers: `!text-red-500` (NOT `text-red-500!`)
+- Modern v4 features: container queries, color spaces
+- Proper responsive design patterns
+- Semantic class combinations
 
-## FILE VERIFICATION RESULTS
-✅ **BASIC FILE CHECKPOINT PASSED**
+## NEXT STEPS
+- **Subtask 9.4**: Update Developer Mode UI for Two-Stage Workflow (PENDING)
+- Continue implementing remaining subtasks
 
-### Essential Components Verified
-- **Source Code**: ✅ All TypeScript files present
-  - `src/index.ts` - Main server entry point
-  - `src/handlers/message-handlers.ts` - WebSocket handlers
-  - `src/types.ts` - Type definitions and schemas
-  - `src/tools.ts` - Utility functions
-  - `src/utils/environment.ts` - Environment validation
+## TASKMASTER TASK STRUCTURE
 
-- **Configuration**: ✅ All config files valid
-  - `package.json` - NPM package configuration
-  - `tsconfig.json` - TypeScript compiler settings
-  - `bun.lock` - Dependency lock file
+### Task 9: Implement Two-Stage AI Model Workflow for Code Generation (ID: 9)
+**Status**: IN-PROGRESS  
+**Priority**: High
+**Dependencies**: [7, 8]
 
-- **Documentation**: ✅ Documentation present
-  - `README.md` - User documentation
-  - `README-DEV.md` - Developer instructions
+#### Subtasks:
+1. **Integrate vercelModel API for Initial React Code Generation** (9.1) ✅ DONE
+   - Set up and configure the vercelModel (v0-1.5-md) API to generate initial React code from image inputs or prompts.
+   - Implementation: Updated image-provider.ts to use image-to-section.md prompt
 
-- **Build System**: ✅ Build successful
-  - Build output: 3.35 KB minified bundle
-  - Build time: 16ms
-  - External dependencies properly configured
+2. **Integrate Claude API for Code Refinement** (9.2) ✅ DONE
+   - Configure Claude (default model) to refine the React code generated by vercelModel, focusing on Weaverse-specific patterns and best practices.
+   - Implementation: Created claude-refinement.md prompt with Tailwind CSS v4 requirements, updated streamWeaverseCode for intelligent prompt selection
 
-### Project Structure Validation
+3. **Develop Two-Stage Workflow Logic** (9.3) ✅ DONE
+   - Orchestrate model handoff, implement error handling and retries, manage data flow between models.
+   - Implementation: Created TwoStageWorkflowOrchestrator with comprehensive error handling, retry logic, and fallback mechanisms
+
+4. **Update Developer Mode UI for Two-Stage Workflow** (9.4) - PENDING
+   - Add feature toggle for two-stage mode, implement progress indicators, integrate with existing chat interface.
+
+5. **Optimize with Caching and Parallel Processing** (9.5) - PENDING
+   - Implement result caching, enable parallel processing where possible, reduce redundant API calls.
+
+6. **Document Workflow and Examples** (9.6) - PENDING
+   - Create usage documentation, provide example prompts and outputs, document best practices.
+
+## MEMORY BANK UPDATE
+Created memory: "When in AI dev mode and the user requests code generation, use the vercelModel for initial code generation with @image-to-section.md as the prompt, then run through the default model (Claude) for a complete result, ensuring strict adherence to Weaverse component structure and best practices." (ID: 3256269358268751974)
+
+## IMPLEMENTATION CHECKLIST
+
+### Phase 1: Model Integration
+- [ ] Configure vercelModel API access
+- [ ] Test vercelModel with image-to-section.md prompt
+- [ ] Set up Claude API refinement pipeline
+- [ ] Validate model switching mechanism
+- [ ] Test error recovery between models
+
+### Phase 2: Workflow Development
+- [ ] Create orchestration layer for model handoff
+- [ ] Implement prompt templates for each stage
+- [ ] Design error handling strategy
+- [ ] Build retry logic with exponential backoff
+- [ ] Test edge cases (timeouts, API failures)
+
+### Phase 3: UI Enhancement
+- [ ] Design two-stage progress indicators
+- [ ] Add feature toggle in developer mode
+- [ ] Update chat interface for new workflow
+- [ ] Implement stage-specific feedback
+- [ ] Test UI responsiveness during processing
+
+### Phase 4: Performance Optimization
+- [ ] Implement intelligent caching layer
+- [ ] Identify parallelization opportunities
+- [ ] Optimize prompt sizes and API calls
+- [ ] Add performance monitoring
+- [ ] Benchmark against single-model approach
+
+## TECHNICAL ARCHITECTURE
+
+### Model Pipeline
 ```
-agent/
-├── src/                    ✅ Source code directory
-│   ├── handlers/          ✅ Message handlers
-│   ├── utils/             ✅ Utility functions
-│   ├── index.ts           ✅ Main entry point
-│   ├── tools.ts           ✅ Tools and helpers
-│   └── types.ts           ✅ Type definitions
-├── build/                 ✅ Compiled output
-├── package.json           ✅ Package config
-├── tsconfig.json          ✅ TypeScript config
-├── README.md              ✅ Documentation
-└── bun.lock               ✅ Dependency lock
+User Input (Image/Prompt)
+    ↓
+[Stage 1: vercelModel]
+    - Purpose: Generate initial React code
+    - Prompt: image-to-section.md
+    - Strength: UI/React understanding
+    ↓
+[Intermediate Processing]
+    - Extract generated code
+    - Prepare for refinement
+    ↓
+[Stage 2: Claude]
+    - Purpose: Refine for Weaverse
+    - Focus: Component structure, best practices
+    - Strength: Weaverse patterns
+    ↓
+Final Weaverse Component
 ```
 
-## COMPLEXITY DETERMINATION ANALYSIS
-
-### Task Requirements Analysis
-**Current Assessment**: The Weaverse Agent project is a complete, fully-functional WebSocket server implementation. Based on the code review and verification:
-
-1. **Complete Implementation**: All core features are implemented and working
-2. **Production Ready**: Build system, packaging, and documentation are complete
-3. **High Code Quality**: TypeScript, error handling, and security best practices followed
-4. **No Obvious Issues**: No bugs, missing features, or configuration problems identified
-
-### Complexity Classification
-**Preliminary Assessment**: **LEVEL 1 - Quick Bug Fix/Review**
-
-**Reasoning**:
-- ✅ **No Implementation Required**: Project appears complete and functional
-- ✅ **Analysis/Review Task**: This seems to be a code review or analysis request
-- ✅ **Minimal Changes Expected**: No major modifications or new features needed
-- ✅ **Low Risk**: Well-structured codebase with good practices
-- ✅ **Quick Completion**: Can be completed within VAN mode
-
-### Task Type Classification
-Based on the analysis, this appears to be one of:
-1. **Code Quality Review** - Analyze and document the current implementation
-2. **Project Documentation** - Ensure proper documentation of the agent
-3. **Pre-Publication Review** - Verify readiness for NPM publication
-4. **General Analysis** - Understand the current state and capabilities
-
-**Recommended Classification**: **Level 1 Task** - Continue in VAN mode to completion
-
-## COMPLEXITY CHECKPOINT ASSESSMENT
-
-✅ **COMPLEXITY CHECKPOINT: LEVEL 1 DETERMINED**
-
-### Level 1 Indicators Met
-- [x] Existing complete implementation
-- [x] No new features required
-- [x] No architectural changes needed
-- [x] Analysis/review nature of task
-- [x] Low implementation effort
-- [x] Can be completed quickly
-
-### VAN Mode Continuation Approved
-Since this is classified as a **Level 1** task, according to VAN mode rules:
-- ✅ **Continue in VAN Mode** (no forced transition to PLAN mode)
-- ✅ **Complete initialization and analysis**
-- ✅ **Provide summary and recommendations**
-- ✅ **Ready for user confirmation or direction**
-
-## PROJECT ANALYSIS STATUS
-
-### Code Review Findings
-- **Architecture**: ✅ Event-driven WebSocket server with clean separation of concerns
-- **Type Safety**: ✅ Full TypeScript with Zod schema validation
-- **Error Handling**: ✅ Comprehensive error handling at multiple layers  
-- **Security**: ✅ Input validation, localhost binding, path sanitization
-- **Build System**: ✅ Bun-based build with TypeScript compilation (verified working)
-- **Dependencies**: ✅ Minimal, production-ready dependencies (verified installed)
-- **Documentation**: ✅ README files present, package.json configured
-
-### Implementation Completeness
-- **Core Features**: ✅ WebSocket server, message handling, file operations
-- **Environment Setup**: ✅ Environment validation on startup
-- **Package Distribution**: ✅ NPM package with binary executable configured
-- **Cross-Platform**: ✅ Node.js path handling for platform compatibility
-- **Build Verification**: ✅ Successful build with 3.35 KB optimized output
-
-## NEXT ACTIONS REQUIRED
-
-### VAN Mode Completion Tasks
-1. **Complete Project Summary** 
-   - Finalize analysis documentation
-   - Provide recommendations if any
-   
-2. **User Clarification**
-   - Confirm specific goals or requirements
-   - Determine if any specific enhancements are needed
-   
-3. **Completion Report**
-   - Generate final VAN mode analysis report
-   - Transition to implementation if needed
+### Key Integration Points
+1. **image-to-section.ts** - Main orchestration
+2. **providers/image-provider.ts** - vercelModel integration
+3. **model.ts** - Model switching logic
+4. **provider.ts** - Claude refinement stage
 
 ## SUCCESS CRITERIA
-- [x] Complete VAN mode initialization process
-- [x] Classify task complexity level accurately (Level 1)
-- [x] Determine appropriate workflow (Continue in VAN mode)
-- [ ] Establish clear task requirements and scope
-- [ ] Provide final analysis and recommendations
+- [ ] Two-stage workflow successfully generates components
+- [ ] vercelModel produces valid initial React code
+- [ ] Claude refinement ensures Weaverse compliance
+- [ ] Performance within acceptable limits (< 10s total)
+- [ ] Error handling covers all failure scenarios
+- [ ] UI provides clear stage feedback
+- [ ] Documentation enables easy adoption
 
 ## BLOCKERS/DEPENDENCIES
-**Current Blockers**: None technical
-**Dependencies**: User confirmation of specific objectives
+**Current Blockers**: None
+**Dependencies**: 
+- Existing AI infrastructure
+- vercelModel API access
+- Claude API access
+- image-to-section.md prompt
 
 ## NOTES
-- Project is production-ready and well-implemented
-- VAN mode analysis reveals this is likely a review/analysis task rather than implementation
-- All technical checkpoints passed successfully
-- Ready to provide final assessment and recommendations 
+- vercelModel excels at UI/React generation from visual inputs
+- Claude ensures strict Weaverse component patterns
+- Two-stage approach balances quality with performance
+- Consider fallback to single-model if either stage fails
+- Monitor API usage to manage costs
+
+## PREVIOUS COMPLETED PROJECT
+The Upload Image Optimization project (tasks 1-8) has been successfully implemented, with only final testing remaining. 

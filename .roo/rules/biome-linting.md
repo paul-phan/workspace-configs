@@ -60,6 +60,16 @@ npx biome check --write ./path/to/file.ts
 npx biome format --write ./path/to/file.ts
 ```
 
+### 3. **Fallback for Unconfigured Projects**
+```bash
+# For projects without biome.json configuration
+npx @biomejs/biome format --write
+```
+**Use when:**
+- No `biome.json` found in project hierarchy
+- No `npm run biome:fix` script available
+- Project needs basic formatting without configuration setup
+
 ## Linting Problem Resolution Workflow
 
 ### 1. **When Roo Code Encounters Linting Issues:**
@@ -83,8 +93,8 @@ npx biome format --write ./path/to/file.ts
 // 1. Detect configuration
 // Look for biome.json in current directory and parents
 
-// 2. Suggest fix command
-// "I found Biome linting issues. Would you like me to run `npm run biome:fix`?"
+// 2. Suggest appropriate fix command
+// Priority: npm run biome:fix > npx biome check --write > npx @biomejs/biome format --write
 
 // 3. Apply configuration-aware fixes
 // Follow the detected biome.json rules for any manual fixes
@@ -124,8 +134,11 @@ npx biome format --write ./path/to/file.ts
 
 ### **Before Code Changes:**
 1. Check if `npm run biome:fix` exists
-2. Suggest running it for automatic fixes
-3. Only proceed with manual fixes if auto-fix isn't sufficient
+2. If not available, check for `biome.json` configuration
+3. Suggest appropriate command:
+   - With config: `npx biome check --write`
+   - Without config: `npx @biomejs/biome format --write`
+4. Only proceed with manual fixes if auto-fix isn't sufficient
 
 ### **During Code Writing:**
 - Follow the detected Biome configuration
@@ -143,7 +156,7 @@ Would you like me to run 'npm run biome:fix' to auto-correct this and other issu
 
 ### **Primary Commands:**
 ```bash
-# Auto-fix all issues
+# Auto-fix all issues (preferred)
 npm run biome:fix
 
 # Check only (no fixes)
@@ -151,6 +164,9 @@ npm run biome:check  # if available
 
 # Manual biome commands as fallback
 npx biome check --write
+
+# For unconfigured projects
+npx @biomejs/biome format --write
 ```
 
 ### **Project Detection:**
@@ -164,12 +180,13 @@ grep -q "biome:fix" package.json && echo "npm run biome:fix available"
 
 ## Best Practices
 
-1. **Always check for `npm run biome:fix` availability first**
+1. **Always check for configuration hierarchy first**
 2. **Respect the nearest `biome.json` configuration hierarchy**
 3. **Suggest auto-fix before manual corrections**
-4. **Maintain consistency with project-specific rule overrides**
-5. **Don't auto-fix without user permission**
-6. **Provide clear explanations referencing Biome rules and config**
+4. **Provide fallback for unconfigured projects**
+5. **Maintain consistency with project-specific rule overrides**
+6. **Don't auto-fix without user permission**
+7. **Provide clear explanations referencing Biome rules and config**
 
 ## Integration with Other Rules
 
