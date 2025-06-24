@@ -67,7 +67,7 @@ npx biome check --write
 ### **Project Directory Detection**
 - **Builder**: `/Users/paul/Workspace/weaverse-project/builder`
 - **Weaverse**: `/Users/paul/Workspace/weaverse-project/weaverse`
-- **Workspace**: `/Users/paul/Workspace/weaverse-project/workspace`
+- **Workspace Configs**: `/Users/paul/Workspace/weaverse-project/workspace` (This is folder to put user's configuration, not actual workspace)
 
 ### **Memory-Saving Integration**
 - Always include prompt: *"Would you like me to save any insights from this chat to Cursor memory?"*
