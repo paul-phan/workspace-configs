@@ -1,0 +1,8 @@
+taskmaster let plan update to @agent/:\
+  \
+  This agent tools work as a bridge between Weaverse Studio and Hydrogen theme code. We plan to make it super powerful like it can analyze the codebase where 
+  it running, read & write files so that when user chat with our AI agent in @builder/ studio, it can help users to generate code and apply it to the correct 
+  folder like @naturelle/app/sections/ , register new section component to @naturelle/app/weaverse/components.ts .\
+  The @agent communitcate with Studio with websocket and when available, the studio can get infomation of the working code base like which deps using, coding 
+  style, reusable components to import to the component that will be generated. In short I want to make my AI chat bot super smart that like Claude Code, can 
+  understand codebase and generate the optimized code.
