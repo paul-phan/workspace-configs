@@ -26,10 +26,10 @@
       },
       "agent": {
         "path": "/agent/",
-        "package_manager": "bun",
-        "dev_commands": ["bun dev", "bun run typecheck", "bun run biome:fix"],
-        "build_commands": ["bun run build"],
-        "quality_checks": ["bun run typecheck", "bun run biome:fix"]
+        "package_manager": "npm",
+        "dev_commands": ["npm run dev", "npm run typecheck", "npm run biome:fix"],
+        "build_commands": ["npm run build"],
+        "quality_checks": ["npm run typecheck", "npm run biome:fix"]
       },
       "generator": {
         "path": "/generator/",
