@@ -7,22 +7,13 @@
 			"path": "../builder"
 		},
 		{
-			"path": "../weaverse"
-		},
-		{
 			"path": "../agent"
 		},
 		{
 			"path": "../weaverse/templates/pilot"
 		},
 		{
-			"path": "../../../.claude"
-		},
-		{
 			"path": ".."
-		},
-		{
-			"path": "../../SuperClaude"
 		}
 	],
 	"settings": {}
