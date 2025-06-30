@@ -10,10 +10,10 @@
 			"path": "../agent"
 		},
 		{
-			"path": "../weaverse/templates/pilot"
+			"path": "../weaverse"
 		},
 		{
-			"path": ".."
+			"path": "../weaverse/templates/pilot"
 		}
 	],
 	"settings": {}

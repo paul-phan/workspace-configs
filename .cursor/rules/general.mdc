@@ -62,24 +62,17 @@ npx biome check --write
 ### **When to Use**
 - When needing clarification on implementation decisions
 - When user requests are ambiguous
-- **Always before completing any request**
 
 ### **Project Directory Detection**
 - **Builder**: `/Users/paul/Workspace/weaverse-project/builder`
 - **Weaverse**: `/Users/paul/Workspace/weaverse-project/weaverse`
-- **Workspace Configs**: `/Users/paul/Workspace/weaverse-project/workspace` (This is folder to put user's configuration, not actual workspace)
+- **Workspace Configs**: `/Users/paul/Workspace/weaverse-project/workspace-configs` (This is folder to put user's configuration, not actual workspace)
 
 ### **Memory-Saving Integration**
 - Always include prompt: *"Would you like me to save any insights from this chat to Cursor memory?"*
 - Focus on reusable patterns, solutions, project-specific knowledge
 - Save integration patterns, troubleshooting solutions, custom implementations
 
-### **Workflow**
-1. Call `mcp_interactive-feedback-mcp_interactive_feedback` when clarification needed
-2. Provide appropriate project directory and summary
-3. Wait for response before proceeding
-4. If empty response, proceed without calling again
-5. Address feedback if provided before completion
 
 ### **Best Practices**
 - Keep summaries concise but descriptive
